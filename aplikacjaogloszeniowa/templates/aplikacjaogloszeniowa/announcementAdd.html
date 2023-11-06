@@ -1,0 +1,42 @@
+{% extends "aplikacjaogloszeniowa/base.html" %}
+
+{% block title %}Dodawanie Ogłoszenia{% endblock %}
+
+{% block content %}
+    <div class="container px-4 mb-5 col-lg-6">
+        <div class="card shadow">
+            <div class=" text-center py-3">
+                <h2 class="mb-0">Tworzenie ogłoszenia</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        {{ addannouncementform.nazwa.label_tag }}
+                        {{ addannouncementform.nazwa }}
+                        <div class="blad">{{ addannouncementform.nazwa.errors }}</div>
+                    </div>
+                    <div class="mb-2">
+                        {{ addannouncementform.cena.label_tag }}
+                        {{ addannouncementform.cena }}
+                        <div class="blad">{{ addannouncementform.cena.errors }}</div>
+                    </div>
+                    <div class="mb-2">
+                        {{ addannouncementform.kategoria.label_tag }}
+                        {{ addannouncementform.kategoria }}
+                        <div class="blad">{{ addannouncementform.kategoria.errors }}</div>
+                    </div>
+                    <div class="mb-4">
+                        {{ addannouncementform.opis.label_tag }}
+                        {{ addannouncementform.opis }}
+                        <div class="blad">{{ addannouncementform.opis.errors }}</div>
+                        <div class="blad">{{ addannouncementform.non_field_errors }}</div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-outline-secondary btn-lg w-50" type="submit">Utwórz ogłoszenie</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

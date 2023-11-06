@@ -1,0 +1,75 @@
+body {
+    background-color: #E5E5E5;
+    font-family: 'Baloo', serif;
+}
+
+.navbar-brand
+{
+    font-size: 40px;
+    color: #14213D;
+}
+
+.nav-link
+{
+    font-size: 27px;
+    color: #14213D;
+}
+.nav-link:hover
+{
+    color: #FCA311;
+}
+
+footer
+{
+    background-color: #14213D
+}
+.card a, .pagination a
+{
+    color: #14213D;
+    text-decoration: none;
+}
+
+.linkikategorii a:hover
+{
+    color: #FCA311;
+}
+
+.form-select:focus
+{
+    border-color: #FCA311;
+    box-shadow: 0px 0px 10px -3px #FCA311;
+}
+
+.form-control:focus
+{
+    border-color: #FCA311;
+    box-shadow: 0px 0px 10px -3px #FCA311;
+}
+
+.btn
+{
+    background-color: #FCA311;
+    color: #14213D;
+}
+.btn:hover
+{
+    background-color: #fdb541;
+    color: #14213D;
+}
+
+.blad
+{
+    color: red;
+}
+
+.edytowanie:hover, .nazwa:hover, .usuwanie:hover, .pagination a:hover
+{
+    color: #FCA311;
+}
+
+.page-link:focus
+{
+    border-color: #FCA311;
+    box-shadow: 0px 0px 10px -3px #FCA311;
+    color: #FCA311;
+}

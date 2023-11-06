@@ -1,0 +1,42 @@
+{% extends "aplikacjaogloszeniowa/base.html" %}
+
+{% block title %}Edytowanie Ogłoszenia{% endblock %}
+
+{% block content %}
+    <div class="container px-4 mb-5 col-lg-6">
+        <div class="card shadow">
+            <div class=" text-center py-3">
+                <h2 class="mb-0">Edycja ogłoszenia</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        {{ editannouncementform.nazwa.label_tag }}
+                        {{ editannouncementform.nazwa }}
+                        <div class="blad">{{ editannouncementform.nazwa.errors }}</div>
+                    </div>
+                    <div class="mb-2">
+                        {{ editannouncementform.cena.label_tag }}
+                        {{ editannouncementform.cena }}
+                        <div class="blad">{{ editannouncementform.cena.errors }}</div>
+                    </div>
+                    <div class="mb-2">
+                        {{ editannouncementform.kategoria.label_tag }}
+                        {{ editannouncementform.kategoria }}
+                        <div class="blad">{{ editannouncementform.kategoria.errors }}</div>
+                    </div>
+                    <div class="mb-4">
+                        {{ editannouncementform.opis.label_tag }}
+                        {{ editannouncementform.opis }}
+                        <div class="blad">{{ editannouncementform.opis.errors }}</div>
+                        <div class="blad">{{ editannouncementform.non_field_errors }}</div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-outline-secondary btn-lg w-50" type="submit">Zapisz zmiany</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "aplikacjaogloszeniowa/base.html" %}
+
+{% block title %}Profil{% endblock %}
+
+{% block content %}
+    <div class="container px-4 mb-5 col-lg-6">
+        <div class="card shadow">
+            <div class=" text-center py-3">
+                <h2 class="mb-0">Edycja profilu</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        {{ userform.email.label_tag }}
+                        {{ userform.email }}
+                        <div class="blad">{{ userform.email.errors }}</div>
+                    </div>
+                    <div class="mb-2">
+                        {{ userform.first_name.label_tag }}
+                        {{ userform.first_name }}
+                        <div class="blad">{{ userform.first_name.errors }}</div>
+                    </div>
+                    <div class="mb-2">
+                        {{ userform.last_name.label_tag }}
+                        {{ userform.last_name }}
+                        <div class="blad">{{ userform.last_name.errors }}</div>
+                    </div>
+                    <div class="mb-2">
+                        {{ uzytkownikform.telefon.label_tag }}
+                        {{ uzytkownikform.telefon }}
+                        <div class="blad">{{ uzytkownikform.telefon.errors }}</div>
+                    </div>
+                    <div class="mb-4">
+                        {{ uzytkownikform.miejscowosc.label_tag }}
+                        {{ uzytkownikform.miejscowosc }}
+                        <div class="blad">{{ uzytkownikform.miejscowosc.errors }}</div>
+                        <div class="blad">{{ userform.non_field_errors }}</div>
+                        <div class="blad">{{ uzytkownikform.non_field_errors }}</div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-outline-secondary btn-lg w-50" type="submit">Zapisz zmiany</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

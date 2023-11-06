@@ -1,0 +1,42 @@
+{% extends "aplikacjaogloszeniowa/base.html" %}
+
+{% block title %}Rejestracja{% endblock %}
+
+{% block content %}
+    <div class="container px-4 mb-5 col-lg-6">
+        <div class="card shadow">
+            <div class=" text-center py-3">
+                <h2 class="mb-0">Rejestracja</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        {{ registerform.username.label_tag }}
+                        {{ registerform.username }}
+                        <div class="blad">{{ registerform.username.errors }}</div>
+                    </div>
+                    <div class="mb-2">
+                        {{ registerform.password1.label_tag }}
+                        {{ registerform.password1 }}
+                        <div class="blad">{{ registerform.password1.errors }}</div>
+                    </div>
+                    <div class="mb-2">
+                        {{ registerform.password2.label_tag }}
+                        {{ registerform.password2 }}
+                        <div class="blad">{{ registerform.password2.errors }}</div>
+                    </div>
+                    <div class="mb-4">
+                        {{ registerform.email.label_tag }}
+                        {{ registerform.email }}
+                        <div class="blad">{{ registerform.email.errors }}</div>
+                        <div class="blad">{{ registerform.non_field_errors }}</div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-outline-secondary btn-lg w-50" type="submit">Załóż konto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

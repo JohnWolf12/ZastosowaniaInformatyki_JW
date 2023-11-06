@@ -1,0 +1,32 @@
+{% extends "aplikacjaogloszeniowa/base.html" %}
+
+{% block title %}Logowanie{% endblock %}
+
+{% block content %}
+    <div class="container px-4 mb-5 col-lg-6">
+        <div class="card shadow">
+            <div class=" text-center py-3">
+                <h2 class="mb-0">Logowanie</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                        <div class="blad">{{ form.username.errors }}</div>
+                    </div>
+                    <div class="mb-4">
+                        {{ form.password.label_tag }}
+                        {{ form.password }}
+                        <div class="blad">{{ form.password.errors }}</div>
+                        <div class="blad">{{ form.non_field_errors }}</div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-outline-secondary btn-lg w-50" type="submit">Zaloguj się</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

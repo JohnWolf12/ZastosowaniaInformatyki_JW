@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        {% load static %}
+        {% load django_bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        {% bootstrap_messages %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://fonts.googleapis.com/css?family=Baloo' rel='stylesheet'>
+        <link rel="stylesheet" href="{% static 'aplikacjaogloszeniowa/style.css' %}">
+        <title>{% block title %}Title{% endblock %}</title>
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        <nav class="navbar navbar-expand-md navbar-light bg-light shadow mb-5">
+            <div class="container px-4">
+                <a class="navbar-brand" href="{% url 'index' %}">JWO</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'profil' %}">Twój profil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'wylogowanie' %}">Wyloguj</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logowanie' %}">Logowanie</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'rejestracja' %}">Rejestracja</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block content %}{% endblock %}
+        <footer class="mt-auto">
+            <div class="text-white text-center p-2">© 2023 Copyright: JW. Strona stworzona tylko w celach dydaktycznych</div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+{% extends "aplikacjaogloszeniowa/base.html" %}
+
+{% block title %}Strona główna{% endblock %}
+
+{% block content %}
+    <div class="container px-4">
+        <form class="form-inline mb-4 mb-md-5" action="/ogloszenia/" method="get">
+            <div class="input-group input-group-lg">
+                <input name="q" class="form-control bg-light py-3" type="search" autocomplete="off" placeholder="Wprowadź nazwę ogłoszenia">
+                <select name="k" class="form-select py-3">
+                    <option value="" selected>Wszystkie kategorie</option>
+                    {% for kategoria in kategorie %}
+                        <option value="{{kategoria.id}}">{{ kategoria }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-outline-secondary px-lg-5 py-3" type="submit">Szukaj</button>
+            </div>
+        </form>
+        <div class="row row-cols-1 row row-cols-sm-2  row-cols-md-3 row-cols-lg-4">
+            {% for kategoria in kategorie %}
+                <div class="col mb-3">
+                    <div class="card text-center shadow">
+                        <div class="linkikategorii card-body">
+                            <a class="stretched-link h5" href="/ogloszenia/?q=&k={{ kategoria.id }}">{{ kategoria }}</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "aplikacjaogloszeniowa/base.html" %}
+
+{% block title %}Profil{% endblock %}
+
+{% block content %}
+    <div class="container px-4 mb-5">
+        <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h4>Witaj, {{ user.username }}</h4>
+                    <div class="row row-cols-1 row-cols-md-2">
+                        <div class="col">
+                            <p class="mb-0 h5">Imię i Nazwisko:</p>
+                            <p class="h5">{% if user.first_name or user.last_name %} {{ user.first_name }} {{ user.last_name }} {% else %} - {% endif %}</p>
+                        </div>
+                        <div class="col">
+                            <p class="mb-0 h5">Adres email: </p>
+                            <p class="h5">{{ user.email }}</p>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <p class="mb-0 h5">Miejscowość:</p>
+                            <p class="h5">{% if user.uzytkownik.miejscowosc %} {{ user.uzytkownik.miejscowosc }} {% else %} - {% endif %}</p>
+                        </div>
+                        <div class="col">
+                            <p class="mb-0 h5">Numer telefonu:</p>
+                            <p class="h5">{% if user.uzytkownik.telefon %} {{ user.uzytkownik.telefon }} {% else %} - {% endif %}</p>
+                        </div>
+                    </div>
+                    <a class="btn btn-outline-secondary btn-lg mt-2" href="{% url 'edycjaProfilu' %}">Edytuj profil</a>
+                </div>
+            </div>
+        <a class="btn btn-outline-secondary btn-lg mb-4" href="{% url 'dodanieOgloszenia' %}">Stwórz nowe ogłoszenie</a>
+        {% if ogloszenia %}
+            {% for ogloszenie in ogloszenia %}
+                <div class="ogloszenie card shadow mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col align-self-start">
+                                <a class="nazwa h3" href="/ogloszenie/{{ogloszenie.id}}">{{ ogloszenie.nazwa }}</a>
+                                <p class="text-muted h4">{{ ogloszenie.cena }} zł</p>
+                            </div>
+                            <div class="col col-12 align-self-end text-end">
+                                <a class="edytowanie h5 px-3" href="/profil/edycjaogloszenia/{{ogloszenie.id}}">Edytuj</a>
+                                <a class="usuwanie h5 px-3" href="/profil/usuniecieogloszenia/{{ogloszenie.id}}" onclick="return confirm('Czy na pewno chcesz usunąć ogłoszenie o nazwie \'{{ ogloszenie.nazwa }}\'')">Usuń</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center h3 mt-3">Nie posiadasz aktualnie żadnych ogłoszeń</p>
+        {% endif %}
+    </div>
+{% endblock %}

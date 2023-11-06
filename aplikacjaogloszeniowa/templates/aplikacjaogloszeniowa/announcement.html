@@ -1,0 +1,45 @@
+{% extends "aplikacjaogloszeniowa/base.html" %}
+
+{% block title %}Ogłoszenie{% endblock %}
+
+{% block content %}
+    <div class="container px-4 mb-5">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <h4>Dane kontaktowe:</h4>
+                <div class="row row-cols-1 row-cols-md-2">
+                    <div class="col">
+                        <p class="mb-0 h5">Imię i Nazwisko:</p>
+                        <p class="h5">{% if ogloszenie.uzytkownik.user.first_name or ogloszenie.uzytkownik.user.last_name %} {{ ogloszenie.uzytkownik.user.first_name }} {{ ogloszenie.uzytkownik.user.last_name }} {% else %} - {% endif %}</p>
+                    </div>
+                    <div class="col">
+                        <p class="mb-0 h5">Adres email: </p>
+                        <p class="h5">{{ ogloszenie.uzytkownik.user.email }}</p>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <p class="mb-0 h5">Miejscowość:</p>
+                        <p class="h5">{% if ogloszenie.uzytkownik.miejscowosc %} {{ ogloszenie.uzytkownik.miejscowosc }} {% else %} - {% endif %}</p>
+                    </div>
+                    <div class="col">
+                        <p class="mb-0 h5">Numer telefonu:</p>
+                        <p class="h5">{% if ogloszenie.uzytkownik.telefon %} {{ ogloszenie.uzytkownik.telefon }} {% else %} - {% endif %}</p>
+                    </div>
+                </div>
+                <a class="btn btn-outline-secondary btn-lg mt-2" href="/uzytkownik/{{ogloszenie.uzytkownik.id}}">Inne przedmioty sprzedającego</a>
+            </div>
+        </div>
+        <div class="ogloszenie card shadow mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col align-self-start">
+                        <p class="h3">{{ ogloszenie.nazwa }}</p>
+                        <p class="text-muted h4">Cena: {{ ogloszenie.cena }} zł</p>
+                        <p class="h4">Opis:</p>
+                        <p class="h5">{% if ogloszenie.opis %}{{ ogloszenie.opis|linebreaksbr }}{% else %}-{% endif %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
