@@ -53,3 +53,14 @@ class Ogloszenie(models.Model):
         verbose_name = "ogłoszenie"
         verbose_name_plural = "ogłoszenia"
 
+
+class Wiadomosc(models.Model):
+    nadawca = models.ForeignKey(Uzytkownik, on_delete=models.CASCADE, related_name='nadawca')
+    adresat = models.ForeignKey(Uzytkownik, on_delete=models.CASCADE, related_name='adresat')
+    tresc = models.TextField(max_length=500)
+    data = models.DateTimeField(auto_now_add=True)
+    nowa = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "wiadomość"
+        verbose_name_plural = "wiadomości"

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from .models import Uzytkownik
 from .models import Kategoria
 from .models import Ogloszenie
+from .models import Wiadomosc
 
 
 class UzytkownikInline(admin.StackedInline):
@@ -21,11 +22,12 @@ class OgloszenieAdmin(admin.ModelAdmin):
     list_display = ('nazwa', 'uzytkownik')
 
 
-class PodkategoriaAdmin(admin.ModelAdmin):
-    list_display = ('nazwa', 'kategoria')
+class WiadomoscAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nadawca', 'adresat')
 
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 admin.site.register(Kategoria)
 admin.site.register(Ogloszenie, OgloszenieAdmin)
+admin.site.register(Wiadomosc, WiadomoscAdmin)

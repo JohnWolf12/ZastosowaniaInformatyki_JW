@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7354d63d-9938-4424-acdc-0318ddda47e6" name="Changes" comment="" />
+    <list default="true" id="7354d63d-9938-4424-acdc-0318ddda47e6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplikacjaogloszeniowa/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/aplikacjaogloszeniowa/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplikacjaogloszeniowa/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/aplikacjaogloszeniowa/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aplikacjaogloszeniowa/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/aplikacjaogloszeniowa/tests.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,6 +48,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -117,11 +123,29 @@
       <workItem from="1686512034248" duration="12000" />
       <workItem from="1699303443066" duration="1680000" />
       <workItem from="1699306245568" duration="84000" />
+      <workItem from="1699306607969" duration="94000" />
+      <workItem from="1699306738453" duration="374000" />
+      <workItem from="1700044209106" duration="24000" />
+      <workItem from="1700343427838" duration="30000" />
+      <workItem from="1700343502596" duration="3366000" />
+      <workItem from="1700513765886" duration="993000" />
+      <workItem from="1700602922540" duration="4071000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
