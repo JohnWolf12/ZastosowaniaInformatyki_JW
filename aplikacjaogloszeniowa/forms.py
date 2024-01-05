@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
-from aplikacjaogloszeniowa.models import Uzytkownik, Ogloszenie, Kategoria
+from aplikacjaogloszeniowa.models import Uzytkownik, Ogloszenie, Kategoria, Wiadomosc
 
 
 class RegisterForm(UserCreationForm):
@@ -140,3 +140,17 @@ class AnnouncementForm(forms.ModelForm):
     class Meta:
         model = Ogloszenie
         fields = ['nazwa', 'cena', 'kategoria', 'opis']
+
+
+class WiadomoscForm(forms.ModelForm):
+    tresc = forms.CharField(max_length=500, required=True, widget=forms.Textarea(
+        attrs={
+            'class': 'form-control bg-light',
+            'placeholder': 'Napisz wiadomość ...',
+            "rows": 2
+        }
+    ))
+
+    class Meta:
+        model = Wiadomosc
+        fields = ['tresc']

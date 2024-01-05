@@ -1,0 +1,49 @@
+{% extends "aplikacjaogloszeniowa/base.html" %}
+
+{% block title %}Wiadomości{% endblock %}
+
+{% block content %}
+    <div class="container px-4 mb-5">
+        <h2 class="font-weight-bold mb-3 text-center text-lg-start">Konwersacje</h2>
+        {% if wiadomosci %}
+        <div class="card">
+          <div class="card-body">
+            <ul class="list-unstyled mb-0">
+                {% for wiadomosc in wiadomosci %}
+                    {% if wiadomosc.nowa == 1  and wiadomosc.nadawca_id != user.uzytkownik.id %}
+                        <li class="sciemnienie p-2 border-bottom border-2 alert alert-warning" >
+                    {% else %}
+                        <li class="sciemnienie p-2 border-bottom border-2" >
+                    {% endif %}
+                    {% if wiadomosc.nadawca_id == user.uzytkownik.id %}
+                        <a href="/konwersacja/{{wiadomosc.adresat.id}}" class="d-flex justify-content-between">
+                    {% else %}
+                        <a href="/konwersacja/{{wiadomosc.nadawca.id}}" class="d-flex justify-content-between">
+                    {% endif %}
+                    <div class="d-flex flex-row">
+                        <div class="pt-1">
+                            {% if wiadomosc.nadawca_id == user.uzytkownik.id %}
+                                <h5 class="fw-bold mb-0">{{ wiadomosc.adresat}}</h5>
+                            {% else %}
+                                <h5 class="fw-bold mb-0">{{ wiadomosc.nadawca}}</h5>
+                            {% endif %}
+                            <p class="small text-muted">{{wiadomosc.tresc|truncatechars:30}}</p>
+                        </div>
+                    </div>
+                    <div class="pt-1">
+                        <p class="small text-muted mb-1">{{wiadomosc.data}}</p>
+                        {% if wiadomosc.nowa == 1  and wiadomosc.nadawca_id != user.uzytkownik.id %}
+                            <span class="badge bg-danger float-end">Nowa</span>
+                        {% endif %}
+                    </div>
+                </a>
+              </li>
+                {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% else %}
+            <p class="text-center h3 mt-3">Brak konwersacji</p>
+        {% endif %}
+      </div>
+{% endblock %}

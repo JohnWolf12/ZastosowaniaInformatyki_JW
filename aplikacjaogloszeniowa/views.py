@@ -1,9 +1,10 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegisterForm, UpdateUserForm, UpdateUzytkownikForm, AnnouncementForm
-from .models import Kategoria, Ogloszenie, Uzytkownik
+from .forms import RegisterForm, UpdateUserForm, UpdateUzytkownikForm, AnnouncementForm, WiadomoscForm
+from .models import Kategoria, Ogloszenie, Uzytkownik, Wiadomosc
 
 
 def index(request):
@@ -186,3 +187,45 @@ def user_view(request, id):
         'ogloszenia': ogloszenia
     }
     return render(request, 'aplikacjaogloszeniowa/user.html', context)
+
+
+@login_required
+def konwersacje_view(request):
+    uzytkownik = request.user.uzytkownik
+    wiadomosci = Wiadomosc.objects.filter(Q(nadawca=uzytkownik) | Q(adresat=uzytkownik)).order_by('-data')
+    lista = []
+    lista_id = []
+    for wiadomosc in wiadomosci:
+        if ((wiadomosc.nadawca_id, wiadomosc.adresat_id) not in lista) and (
+                (wiadomosc.adresat_id, wiadomosc.nadawca_id) not in lista):
+            lista.append((wiadomosc.nadawca_id, wiadomosc.adresat_id))
+            lista_id.append(wiadomosc.id)
+    wiadomosci = Wiadomosc.objects.filter(id__in=lista_id).order_by('-data')
+    context = {
+        'wiadomosci': wiadomosci
+    }
+    return render(request, 'aplikacjaogloszeniowa/wiadomosci.html', context)
+
+
+@login_required
+def konwersacja_view(request, id):
+    rozmowca = get_object_or_404(Uzytkownik, id=id)
+    uzytkownik = request.user.uzytkownik
+    Wiadomosc.objects.filter(nadawca_id=id, adresat=uzytkownik, nowa=1).update(nowa=0)
+    wiadomosci = Wiadomosc.objects.filter(
+        (Q(nadawca=uzytkownik) & Q(adresat_id=id)) | (Q(adresat=uzytkownik) & Q(nadawca_id=id))).order_by('data')
+    if request.method == 'POST':
+        wiadomoscform = WiadomoscForm(request.POST)
+        wiadomoscform.instance.nadawca = uzytkownik
+        wiadomoscform.instance.adresat = rozmowca
+        if wiadomoscform.is_valid():
+            wiadomoscform.save()
+            return redirect("/konwersacja/" + str(id))
+    else:
+        wiadomoscform = WiadomoscForm()
+    context = {
+        'wiadomosci': wiadomosci,
+        'rozmowca': rozmowca,
+        'wiadomoscform': wiadomoscform
+    }
+    return render(request, 'aplikacjaogloszeniowa/wiadomosc.html', context)

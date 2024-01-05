@@ -19,5 +19,6 @@ urlpatterns = [
     path('ogloszenia/', views.announcements_view, name="ogloszenia"),
     path('ogloszenie/<int:id>', views.announcement_view, name="ogloszenie"),
     path('uzytkownik/<int:id>', views.user_view, name="uzytkownik"),
-
+    path('konwersacje/', views.konwersacje_view, name='konwersacje'),
+    path('konwersacja/<int:id>', views.konwersacja_view, name='konwersacja'),
 ]

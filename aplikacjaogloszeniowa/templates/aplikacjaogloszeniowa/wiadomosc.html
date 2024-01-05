@@ -1,0 +1,74 @@
+{% extends "aplikacjaogloszeniowa/base.html" %}
+
+{% block title %}Konwersacja{% endblock %}
+
+{% block content %}
+    <div class="container px-4 mb-5">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center p-3">
+                <h5 class="mb-0">Konwersacja z {{ rozmowca }}</h5>
+            </div>
+            <div class="card-body scrollowanie" id="okno">
+                <div class="wiadomosci">
+                    {% for wiadomosc in wiadomosci %}
+                        {% if wiadomosc.adresat == user.uzytkownik %}
+                            <div class="d-flex flex-row justify-content-start">
+                                <div>
+                                    <p class="small mb-1 ">{{ wiadomosc.nadawca}}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-start">
+                                <div>
+                                    <p class="small p-2 mb-1 rounded-3 szarawiadomosc wiadomosc">{{ wiadomosc.tresc|linebreaksbr}}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-start">
+                                <div>
+                                    <p class="small mb-3 text-muted">{{ wiadomosc.data}}</p>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="d-flex flex-row justify-content-end">
+                                <div>
+                                    <p class="small mb-1 text-end">{{ wiadomosc.nadawca}}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-end">
+                                <div>
+                                    <p class="small p-2 mb-1 rounded-3 text-white bg-warning wiadomosc">{{ wiadomosc.tresc|linebreaksbr}}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-end">
+                                <div>
+                                    <p class="small mb-3 text-muted text-end">{{ wiadomosc.data}}</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card-footer text-muted p-3">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ wiadomoscform.tresc }}
+                    <button class="btn btn-warning mt-2" type="submit">Wyślij</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var okno = document.getElementById("okno");
+        okno.scrollTop = okno.scrollHeight;
+        let wys = okno.scrollHeight -okno.scrollTop;
+        $(document).ready(function(){
+            setInterval(function(){
+                let wys2 = okno.scrollHeight -okno.scrollTop;
+                $(".wiadomosci").load(window.location.href + " .wiadomosci", function() {
+                    if (Math.abs(wys - wys2) <= 10) {
+                        okno.scrollTop = okno.scrollHeight;
+                    }
+                });
+            }, 10000)
+        })
+    </script>
+{% endblock %}

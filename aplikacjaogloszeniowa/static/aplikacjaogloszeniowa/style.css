@@ -73,3 +73,28 @@ footer
     box-shadow: 0px 0px 10px -3px #FCA311;
     color: #FCA311;
 }
+
+a:hover
+{
+    color: #FCA311;
+}
+
+.sciemnienie:hover
+{
+    background-color: #f5f5f5;
+}
+
+.scrollowanie
+{
+    height: 50vh;
+    overflow-y: scroll;
+}
+.szarawiadomosc
+{
+    background-color: #eeeeee;
+}
+
+.wiadomosc
+{
+    word-break: break-all;
+}
